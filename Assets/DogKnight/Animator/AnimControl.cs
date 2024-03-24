@@ -24,6 +24,7 @@ public class AnimControl : MonoBehaviour
             knight.GetComponent<Animator>().Play("Idle_Battle");
         }
 
+        
          
         
     }
