@@ -11,19 +11,21 @@ public class FollowCam : MonoBehaviour
     private float rotateX = 0f;
     private float rotateY = 0f;
 
-    float sensitivity = 5f;
-    
+    float sensitivity = 1.7f;
+
+    public float cameraDistance = 10.0f;
+
     void Start()
     {
         //cur = 0.0f;
                
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = knight.transform.position + camOffset;
-        
+        transform.position = knight.transform.position - knight.transform.forward * cameraDistance;
+        transform.LookAt(knight.transform.position);
+        transform.position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
     }
 
     void Update()
