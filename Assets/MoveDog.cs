@@ -51,7 +51,7 @@ public class MoveDog : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-
+        
         //animation
         if (direction == Vector3.zero)
         {
@@ -72,5 +72,6 @@ public class MoveDog : MonoBehaviour
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
         }
+        
     }
 }

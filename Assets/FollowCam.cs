@@ -6,7 +6,6 @@ public class FollowCam : MonoBehaviour
 {
     // Start is called before the first frame update
     public Transform knight;
-    public Vector3 camOffset ;
     //private float cur;
     private float rotateX = 0f;
     private float rotateY = 0f;
