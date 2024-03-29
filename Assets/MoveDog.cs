@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class MoveDog : MonoBehaviour
@@ -10,7 +11,7 @@ public class MoveDog : MonoBehaviour
 
     public float speed = 6;
     public float gravity = -9.81f;
-    public float jumpHeight = 3;
+    public float jumpHeight = 1;
     Vector3 velocity;
     bool isGrounded;
 
@@ -31,17 +32,14 @@ public class MoveDog : MonoBehaviour
     void Update()
     {
         //jump
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        if (isGrounded && velocity.y < 0)
+        if (controller.isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
-
-
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        
+        if (Input.GetButtonDown("Jump") && controller.isGrounded)
         {
+            UnityEngine.Debug.Log("Jumped!!!");
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
         //gravity
