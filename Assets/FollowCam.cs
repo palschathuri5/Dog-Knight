@@ -8,7 +8,7 @@ public class FollowCam : MonoBehaviour
     public Transform knight;
     //private float cur;
     private float rotateX = 0f;
-    private float rotateY = 0f;
+    // private float rotateY = 0f;
 
     float sensitivity = 1.7f;
 
