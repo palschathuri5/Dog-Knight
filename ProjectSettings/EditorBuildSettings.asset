@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/BrushwoodKingdom.unity
+    guid: c0ef025d3997cfa4fb84cdde422bef50
+  - enabled: 1
+    path: Assets/Scenes/Dungeon.unity
+    guid: 27915ac565aadf048b89a94d619c501d
   m_configObjects: {}

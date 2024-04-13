@@ -39,7 +39,7 @@ public class MoveDog : MonoBehaviour
         
         if (Input.GetButtonDown("Jump") && controller.isGrounded)
         {
-            UnityEngine.Debug.Log("Jumped!!!");
+            // UnityEngine.Debug.Log("Jumped!!!");
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
         //gravity
@@ -50,7 +50,7 @@ public class MoveDog : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
         
-        //animation
+        //Walking animation
         if (direction == Vector3.zero)
         {
             //Idle
@@ -59,6 +59,16 @@ public class MoveDog : MonoBehaviour
         else
         {
             animator.SetFloat("Speed", 2f);
+        }
+
+        //Attacking Animation
+        if (Input.GetButtonDown("Fire1") && controller.isGrounded)
+        {
+            animator.SetBool("Attack", true);
+        }
+        else
+        {
+            animator.SetBool("Attack", false);
         }
 
         if (direction.magnitude >= 0.1f)
