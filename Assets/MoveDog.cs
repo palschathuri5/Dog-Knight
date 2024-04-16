@@ -50,6 +50,28 @@ public class MoveDog : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
         
+        
+
+        //Attacking Animation
+        if (Input.GetButtonDown("Fire1") && controller.isGrounded)
+        {
+            animator.SetBool("Attack", true);
+        }
+        else
+        {
+            animator.SetBool("Attack", false);
+        }
+
+        //Defense Animation
+        if (Input.GetButtonDown("Fire2") && controller.isGrounded)
+        {
+            animator.SetBool("Defend", true);
+        }
+        else
+        {
+            animator.SetBool("Defend", false);
+        }
+
         //Walking animation
         if (direction == Vector3.zero)
         {
@@ -61,15 +83,6 @@ public class MoveDog : MonoBehaviour
             animator.SetFloat("Speed", 2f);
         }
 
-        //Attacking Animation
-        if (Input.GetButtonDown("Fire1") && controller.isGrounded)
-        {
-            animator.SetBool("Attack", true);
-        }
-        else
-        {
-            animator.SetBool("Attack", false);
-        }
 
         if (direction.magnitude >= 0.1f)
         {
