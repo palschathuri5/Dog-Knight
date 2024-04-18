@@ -22,6 +22,8 @@ public class MoveDog : MonoBehaviour
     float turnSmoothVelocity;
     public float turnSmoothTime = 0.1f;
 
+    public float attackRange = 2f;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -56,6 +58,7 @@ public class MoveDog : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && controller.isGrounded)
         {
             animator.SetBool("Attack", true);
+            AttackEnemy();
         }
         else
         {
@@ -94,5 +97,35 @@ public class MoveDog : MonoBehaviour
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
         }
         
+    }
+
+    void AttackEnemy()
+    {
+        // Find all objects with the "enemy" tag
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        // Get the position of the player
+        Vector3 playerPosition = transform.position;
+
+        // Loop through each enemy and apply damage if within range
+        foreach (GameObject enemy in enemies)
+        {
+            // Calculate the distance between the player and the enemy
+            float distanceToEnemy = Vector3.Distance(playerPosition, enemy.transform.position);
+            UnityEngine.Debug.Log("Distance " + distanceToEnemy);
+            // Check if the enemy is within attack range
+            if (distanceToEnemy <= attackRange)
+            {
+                //UnityEngine.Debug.Log("Yes");
+                // Get the EnemyHealth component from the enemy
+                EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+
+                // If the enemy has EnemyHealth component, deduct health
+                if (enemyHealth != null)
+                {
+                    enemyHealth.TakeDamage(5); // Reduce 5 health
+                }
+            }
+
+        }
     }
 }
