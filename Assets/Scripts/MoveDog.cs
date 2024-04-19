@@ -23,7 +23,7 @@ public class MoveDog : MonoBehaviour
     public float turnSmoothTime = 0.1f;
 
     public float attackRange = 2f;
-
+    
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -59,6 +59,7 @@ public class MoveDog : MonoBehaviour
         {
             animator.SetBool("Attack", true);
             AttackEnemy();
+            AttackCrate();
         }
         else
         {
@@ -128,4 +129,23 @@ public class MoveDog : MonoBehaviour
 
         }
     }
+
+    void AttackCrate(){
+        //UnityEngine.Debug.Log("In Attack crate");
+        float crateZone = 2.0f; //area surrounding crate where dog can break the crate
+        //Similar to attackEnemy(), creating tag to handle multiple crate objects
+        GameObject[] crates = GameObject.FindGameObjectsWithTag("Crate"); 
+        foreach (GameObject crate in crates){
+            float distanceToCrate = Vector3.Distance(transform.position, crate.transform.position);
+             //calculating distance so we can destroy the crate when we are in the zone.
+            if (distanceToCrate <= crateZone){
+                ItemReplace replaceScript = crate.GetComponent<ItemReplace>(); //Calling the ItemReplace.cs script
+                if(replaceScript!=null){
+                    replaceScript.ReplaceBox();
+                }
+            }
+        }
+    }
+
+    
 }
