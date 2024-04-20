@@ -5,19 +5,21 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public Animator animator;
     public int maxHealth = 15; // Maximum health of the enemy
     private int currentHealth; // Current health of the enemy
 
     void Start()
     {
         currentHealth = maxHealth; // Set current health to maximum health when the enemy spawns
+        animator = GetComponent<Animator>();
     }
 
     // Method to reduce the enemy's health
     public void TakeDamage(int damage)
     {
         currentHealth -= damage; // Reduce current health by the amount of damage
-
+        animator.SetTrigger("Hit");
         // Check if the enemy is dead
         if (currentHealth <= 0)
         {

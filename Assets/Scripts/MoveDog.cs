@@ -23,7 +23,10 @@ public class MoveDog : MonoBehaviour
     public float turnSmoothTime = 0.1f;
 
     public float attackRange = 2f;
-    
+
+    public float cooldown = 1f; //seconds
+    private float lastAttackedAt = -9999f;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -58,8 +61,14 @@ public class MoveDog : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && controller.isGrounded)
         {
             animator.SetBool("Attack", true);
-            AttackEnemy();
-            AttackCrate();
+            
+            if (Time.time > lastAttackedAt + cooldown)
+            {
+                //do the attack
+                AttackEnemy();
+                AttackCrate();
+                lastAttackedAt = Time.time;
+            }
         }
         else
         {
