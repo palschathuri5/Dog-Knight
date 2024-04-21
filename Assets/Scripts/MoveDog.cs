@@ -142,6 +142,7 @@ public class MoveDog : MonoBehaviour
     void AttackCrate(){
         //UnityEngine.Debug.Log("In Attack crate");
         float crateZone = 2.0f; //area surrounding crate where dog can break the crate
+        
         //Similar to attackEnemy(), creating tag to handle multiple crate objects
         GameObject[] crates = GameObject.FindGameObjectsWithTag("Crate"); 
         foreach (GameObject crate in crates){
@@ -151,9 +152,30 @@ public class MoveDog : MonoBehaviour
                 ItemReplace replaceScript = crate.GetComponent<ItemReplace>(); //Calling the ItemReplace.cs script
                 if(replaceScript!=null){
                     replaceScript.ReplaceBox();
+                    //deleteItem();
                 }
             }
         }
+    }
+
+    public void deleteItem(){
+         float itemZone = 1.0f; //area surrounding crate where dog can break the crate
+        
+        //Similar to attackEnemy(), creating tag to handle multiple crate objects
+            UnityEngine.Debug.Log("deleteItem");
+            
+
+            GameObject[] crates = GameObject.FindGameObjectsWithTag("Crate"); 
+            foreach (GameObject crate in crates){
+                UnityEngine.Debug.Log(crate);
+                float distanceToItem = Vector3.Distance(transform.position, crate.transform.position);
+             //calculating distance so we can destroy the crate when we are in the zone.
+                if (distanceToItem <= itemZone){
+                    UnityEngine.Debug.Log("in delete item range");
+                    Destroy(crate);
+                }
+        }
+        
     }
 
     
