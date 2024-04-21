@@ -20,8 +20,10 @@ public class ItemReplace : MonoBehaviour
 
     public void ReplaceBox(){
         Instantiate(boxItem, transform.position, transform.rotation); //replacing box crate with item, in same position/config
-        UnityEngine.Debug.Log("Replace item should succeed");
+        
         Destroy(gameObject);
     }
+
+    
    
 }

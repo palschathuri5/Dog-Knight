@@ -12,6 +12,9 @@ public class HealthUI : MonoBehaviour
     void Start()
     {
         dogStats = DogStats.instance;
+        dogStats.onEventDamage += UpdateHearts;
+        dogStats.onEventUpgraded += AddHearts;
+        
         for(int i = 0; i< dogStats.maxHearts; i++)
         {
             GameObject instantiateHeart = Instantiate(fillHeart, this.transform);
@@ -20,8 +23,27 @@ public class HealthUI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void UpdateHearts()
     {
-        
+        int emptyHeart = dogStats.Hearts;
+        foreach(Image i in fillHearts)
+        {
+            i.fillAmount = emptyHeart;
+            emptyHeart -= 1;
+        }
+    }
+
+    void AddHearts()
+    {
+        foreach(Image i in fillHearts)
+        {
+            Destroy(i.gameObject);
+        }
+        fillHearts.Clear();
+        for(int i = 0; i< dogStats.maxHearts; i++)
+        {
+            GameObject instantiateHeart = Instantiate(fillHeart, this.transform);
+            fillHearts.Add(instantiateHeart.GetComponent<Image>());
+        }
     }
 }
