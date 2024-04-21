@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using UnityEngine;
 
@@ -36,12 +37,21 @@ public class MoveDog : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         //jump
         if (controller.isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
-        
+
+        if (animator.GetBool("Death") == true && controller.isGrounded)
+        {
+
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
+            return;
+        }
+
         if (Input.GetButtonDown("Jump") && controller.isGrounded)
         {
             // UnityEngine.Debug.Log("Jumped!!!");
@@ -50,11 +60,12 @@ public class MoveDog : MonoBehaviour
         //gravity
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+        
         //walk
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-        
+
         
 
         //Attacking Animation

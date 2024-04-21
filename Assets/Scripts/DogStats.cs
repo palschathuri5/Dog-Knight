@@ -6,7 +6,8 @@ using System;
 public class DogStats : MonoBehaviour
 {
     public static DogStats instance; //it is static - check if any future error
-    
+    public Animator animator;
+
     public event Action onEventDamage;
     public event Action onEventUpgraded;
     public int maxHearts;
@@ -19,6 +20,7 @@ public class DogStats : MonoBehaviour
     {
         hearts = maxHearts;
         UnityEngine.Debug.Log("Hearts at beggining " + hearts);
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -37,19 +39,24 @@ public class DogStats : MonoBehaviour
 
     public void TakeDamage()
     {
-        if(hearts<=0)
+        if (animator.GetBool("Death") == true)
         {
             return;
         }
-        else
+
+        hearts-=1;
+        UnityEngine.Debug.Log("Damage " + hearts);
+        if(onEventDamage != null)
         {
-            hearts-=1;
-            UnityEngine.Debug.Log("Damage " + hearts);
-            if(onEventDamage != null)
-            {
-                onEventDamage();
-            }
+            onEventDamage();
         }
+        if (hearts <= 0)
+        {
+            UnityEngine.Debug.Log("Dead");
+            animator.SetBool("Death", true);
+            return;
+        }
+
         
     }
 

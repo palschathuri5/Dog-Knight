@@ -33,7 +33,7 @@ public class FollowCam : MonoBehaviour
         
         rotateX = Input.GetAxis ("Mouse X")*sensitivity;
         
-
+        
         knight.Rotate(Vector3.up * rotateX);
     }
 }

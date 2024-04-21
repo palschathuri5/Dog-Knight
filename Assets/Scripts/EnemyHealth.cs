@@ -18,11 +18,13 @@ public class EnemyHealth : MonoBehaviour
     // Method to reduce the enemy's health
     public void TakeDamage(int damage)
     {
+        UnityEngine.Debug.Log("Enemy Damaged by " + damage);
         currentHealth -= damage; // Reduce current health by the amount of damage
         animator.SetTrigger("Hit");
         // Check if the enemy is dead
         if (currentHealth <= 0)
         {
+            UnityEngine.Debug.Log("Enemy Died " + damage);
             Die(); // Call the Die method if the enemy's health reaches or falls below zero
         }
     }
