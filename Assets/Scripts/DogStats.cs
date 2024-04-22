@@ -45,7 +45,7 @@ public class DogStats : MonoBehaviour
         }
 
         hearts-=1;
-        UnityEngine.Debug.Log("Damage " + hearts);
+        UnityEngine.Debug.Log("Player Damage " + hearts);
         if(onEventDamage != null)
         {
             onEventDamage();

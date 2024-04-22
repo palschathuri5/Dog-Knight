@@ -89,6 +89,7 @@ public class MoveDog : MonoBehaviour
         //Defense Animation
         if (Input.GetButtonDown("Fire2") && controller.isGrounded)
         {
+            Recover();
             animator.SetBool("Defend", true);
         }
         else
@@ -187,6 +188,12 @@ public class MoveDog : MonoBehaviour
                 }
         }
         
+    }
+
+    void Recover()
+    {
+        DogStats dogStats = GetComponent<DogStats>();
+        dogStats.RestoreHeart();
     }
 
     
