@@ -27,6 +27,7 @@ public class MoveDog : MonoBehaviour
 
     public float cooldown = 1f; //seconds
     private float lastAttackedAt = -9999f;
+    private float lastDefendedAt = -9999f;
 
     void Start()
     {
@@ -89,8 +90,13 @@ public class MoveDog : MonoBehaviour
         //Defense Animation
         if (Input.GetButtonDown("Fire2") && controller.isGrounded)
         {
-            Recover();
             animator.SetBool("Defend", true);
+            if (Time.time > lastDefendedAt + cooldown)
+            {
+                Recover();
+                lastDefendedAt = Time.time;
+            }
+
         }
         else
         {

@@ -19,8 +19,10 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         UnityEngine.Debug.Log("Enemy Damaged by " + damage);
-        currentHealth -= damage; // Reduce current health by the amount of damage
         animator.SetTrigger("Hit");
+
+
+
         // Check if the enemy is dead
         if (currentHealth <= 0)
         {

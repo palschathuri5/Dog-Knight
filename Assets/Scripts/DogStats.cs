@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class DogStats : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class DogStats : MonoBehaviour
     public event Action onEventUpgraded;
     public int maxHearts;
     int hearts;
+
+    //When dead 3 seconds before restart
+    public float resetCooldown = 3f;
+    public float timer = 0f;
+
     public int Hearts { get { return hearts; } }
 
     bool perished = false;
@@ -21,7 +27,7 @@ public class DogStats : MonoBehaviour
     private void Start()
     {
         hearts = maxHearts;
-        UnityEngine.Debug.Log("Hearts at beggining " + hearts);
+        UnityEngine.Debug.Log("Hearts at beginning " + hearts);
         animator = GetComponent<Animator>();
 
        
@@ -30,7 +36,17 @@ public class DogStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (perished)
+        {
+            timer += Time.deltaTime;
+            if(timer >= resetCooldown)
+            {
+                SceneManager.LoadScene(0);
+            }
+
+            
+        }
+
     }
 
     void Awake()

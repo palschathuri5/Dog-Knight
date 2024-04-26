@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -21250,7 +21250,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: <mark=#ffffff99>I'm Bambino. Welcome to Brushwood Kingdom. Monsters have
     arrived ruining our era of peace. I heard there is a dungeon somewhere in the
-    forest</mark>
+    forest. Also collecting cherries increase your health!</mark>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -25030,7 +25030,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: <mark "FF8000">I'm Tony, Do you still remember your combat skills. Left
-    click to attack, right click to defend.</mark>
+    click to attack, right click to recover health.</mark>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
