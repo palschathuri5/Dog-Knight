@@ -13,6 +13,8 @@ public class FollowCam : MonoBehaviour
     float sensitivity = 1.7f;
 
     public float cameraDistance = 10.0f;
+    
+    
 
     void Start()
     {
@@ -29,11 +31,14 @@ public class FollowCam : MonoBehaviour
 
     void Update()
     {
+            rotateX = Input.GetAxis ("Mouse X")*sensitivity;
         
         
-        rotateX = Input.GetAxis ("Mouse X")*sensitivity;
+            knight.Rotate(Vector3.up * rotateX);
+       
         
-        
-        knight.Rotate(Vector3.up * rotateX);
     }
+
+  
+
 }

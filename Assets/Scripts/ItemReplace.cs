@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemReplace : MonoBehaviour
 {
     public GameObject boxItem;
-    
+    GameObject instantCherry;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +19,15 @@ public class ItemReplace : MonoBehaviour
     }
 
     public void ReplaceBox(){
-        Instantiate(boxItem, transform.position, transform.rotation); //replacing box crate with item, in same position/config
+        instantCherry = Instantiate(boxItem, transform.position, transform.rotation); //replacing box crate with item, in same position/config
         
         Destroy(gameObject);
+
+        //Destroying the cherry object, to indicate that it is has been collected
+        if (instantCherry != null)
+        {
+            Destroy(instantCherry,1.5f);
+        }
     }
 
     

@@ -8,19 +8,23 @@ public class DogStats : MonoBehaviour
     public static DogStats instance; //it is static - check if any future error
     public Animator animator;
 
+    
     public event Action onEventDamage;
     public event Action onEventUpgraded;
     public int maxHearts;
     int hearts;
     public int Hearts { get { return hearts; } }
 
-    
+    bool perished = false;
+    public bool Perished { get { return perished; } }
     // Start is called before the first frame update
     private void Start()
     {
         hearts = maxHearts;
         UnityEngine.Debug.Log("Hearts at beggining " + hearts);
         animator = GetComponent<Animator>();
+
+       
     }
 
     // Update is called once per frame
@@ -54,6 +58,8 @@ public class DogStats : MonoBehaviour
         {
             UnityEngine.Debug.Log("Dead");
             animator.SetBool("Death", true);
+            perished = true;
+
             return;
         }
 
