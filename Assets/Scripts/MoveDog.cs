@@ -164,37 +164,30 @@ public class MoveDog : MonoBehaviour
                 ItemReplace replaceScript = crate.GetComponent<ItemReplace>(); //Calling the ItemReplace.cs script
                 if(replaceScript!=null){
                     replaceScript.ReplaceBox();
-                    //deleteItem();
+                    StartCoroutine(FullHealth(1.5f));
+                    
                 }
             }
         }
     }
 
-    public void deleteItem(){
-         float itemZone = 1.0f; //area surrounding crate where dog can break the crate
-        
-        //Similar to attackEnemy(), creating tag to handle multiple crate objects
-            UnityEngine.Debug.Log("deleteItem");
-            
-
-            GameObject[] crates = GameObject.FindGameObjectsWithTag("Crate"); 
-            foreach (GameObject crate in crates){
-                UnityEngine.Debug.Log(crate);
-                float distanceToItem = Vector3.Distance(transform.position, crate.transform.position);
-             //calculating distance so we can destroy the crate when we are in the zone.
-                if (distanceToItem <= itemZone){
-                    UnityEngine.Debug.Log("in delete item range");
-                    Destroy(crate);
-                }
-        }
-        
-    }
+   
 
     void Recover()
     {
         DogStats dogStats = GetComponent<DogStats>();
         dogStats.RestoreHeart();
     }
+
+    IEnumerator FullHealth(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        DogStats dogStats = GetComponent<DogStats>();
+        dogStats.UpgradeHealth();
+    }
+
+
 
     
 }
