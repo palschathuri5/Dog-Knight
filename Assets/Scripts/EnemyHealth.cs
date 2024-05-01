@@ -18,8 +18,9 @@ public class EnemyHealth : MonoBehaviour
     // Method to reduce the enemy's health
     public void TakeDamage(int damage)
     {
-        UnityEngine.Debug.Log("Enemy Damaged by " + damage);
+        UnityEngine.Debug.Log("Enemy hp: " + currentHealth + ",  Damaged by " + damage);
         animator.SetTrigger("Hit");
+        currentHealth -= damage;
 
 
 
